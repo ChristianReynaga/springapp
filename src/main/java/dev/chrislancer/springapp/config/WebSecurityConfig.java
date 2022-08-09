@@ -29,4 +29,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("admin").password("{noop}" + "admin").roles("ADMIN");
     }
+
+    private void jwtAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(null);
+    }
+
+    private void basicAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+        auth.
+                inMemoryAuthentication()
+                .withUser("user").password("{noop}" + "user").roles("USER")
+                .and()
+                .withUser("admin").password("{noop}" + "admin").roles("ADMIN");
+    }
+
 }
