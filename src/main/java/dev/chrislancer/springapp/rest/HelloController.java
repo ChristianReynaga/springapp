@@ -1,22 +1,16 @@
 package dev.chrislancer.springapp.rest;
 
-import dev.chrislancer.springapp.security.AuthRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("")
+@Slf4j
 public class HelloController {
-
-    private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     @GetMapping("/user")
     public ResponseEntity<?> helloUser() {
@@ -34,9 +28,9 @@ public class HelloController {
 
     private void logAuthentication() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        logger.info("USER: {}", auth.getPrincipal());
-        logger.info("AUTHORITIES: {}", auth.getAuthorities());
-        logger.info("IS AUTHENTICATED: {}", auth.isAuthenticated());
+        log.info("USER: {}", auth.getPrincipal());
+        log.info("AUTHORITIES: {}", auth.getAuthorities());
+        log.info("IS AUTHENTICATED: {}", auth.isAuthenticated());
     }
 
 }
